@@ -58,7 +58,9 @@ export class ViewMyBookings extends Component {
                                         const base64String = btoa(new Uint8Array(tour.tour[0].image.data.data).reduce(function (data, byte) {
                                             return data + String.fromCharCode(byte);
                                         }, ''));
+                                        console.log(tour)
                                         return (
+
                                             <div className="col-sm-4 cardMarginTop">
                                                 <MDBCard className="d-flex mb-5">
 
@@ -88,7 +90,12 @@ export class ViewMyBookings extends Component {
                                                         <br/>
                                                         <span className="h5 text-left mb-4">Transport</span> :<span
                                                         style={{fontWeight: "bold"}}>{tour.tour[0].transport}</span>
-
+                                                        <br/>
+                                                        <span className="h5 text-left mb-4">Person Count </span> :<span
+                                                        style={{fontWeight: "bold"}}>{tour.personCount}</span>
+                                                        <br/>
+                                                        <span className="h5 text-left mb-4">Full Cost</span> :<span
+                                                        style={{fontWeight: "bold"}}>{tour.fullCost}</span>
                                                     </MDBCardBody>
                                                 </MDBCard>
                                             </div>

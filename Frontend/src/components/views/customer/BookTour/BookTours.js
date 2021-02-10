@@ -71,7 +71,9 @@ export class BookTours extends Component {
         event.preventDefault();
         const tourBookDetails={
             user :localStorage.getItem("CustomerId"),
-            tour :this.state.tourId
+            tour :this.state.tourId,
+            personCount : this.state.personCount,
+            fullCost : this.state.cost
         }
         bookTour(tourBookDetails).then(res=>{
             if (res.data.success === 'successful') {
