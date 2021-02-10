@@ -21,3 +21,13 @@ export const findallBookedtours = (userId) => {
         })
 };
 
+export const findallBookedTours = () => {
+    return axios.get(constants.backend_url + 'api/tour/book/getAll')
+        .then(res => {
+            console.log(res);
+            return res;
+        }).catch(function (error) {
+            return error;
+        })
+};
+

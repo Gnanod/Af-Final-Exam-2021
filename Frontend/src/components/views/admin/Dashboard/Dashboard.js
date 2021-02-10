@@ -4,6 +4,7 @@ import {
     MDBCardBody,MDBCardText, MDBContainer, MDBIcon
 } from "mdbreact";
 import {findalltours} from "../../../services/tour.service";
+import {findallBookedTours} from "../../../services/tour.book.service";
 
 export class Dashboard extends Component {
 
@@ -13,10 +14,15 @@ export class Dashboard extends Component {
         this.state = {
             tourList: [],
             tourListStatus: false,
-            tourCount :0
+            tourCount :0,
+            bookedTourList: [],
+            bookedTourListStatus: false,
+            bookedTourCount :0
         }
         this.getAllTours = this.getAllTours.bind(this);
+        this.getAllBookedTours = this.getAllBookedTours.bind(this);
         this.getAllTours();
+        this.getAllBookedTours();
     }
 
     getAllTours() {
@@ -28,7 +34,15 @@ export class Dashboard extends Component {
             })
         }).catch(error => console.error(error));
     }
+    getAllBookedTours() {
+        findallBookedTours().then(res => {
+            this.setState({
+                bookedTourList: res.data,
+                bookedTourListStatus: true,
 
+            })
+        }).catch(error => console.error(error));
+    }
     render() {
         return (
             <MDBContainer>
@@ -61,21 +75,15 @@ export class Dashboard extends Component {
                     <div className="admin-up">
                         <MDBIcon icon="chart-line" className="warning-color"/>
                         <div className="data">
-                            <p>Total Bookings</p>
+                            <h3 className="h1 text-left mb-4">Total Bookings</h3>
                             <h4>
-                                <strong>$2000</strong>
+                                <strong>{this.state.bookedTourListStatus ?this.state.bookedTourList.length :
+                                    ''}</strong>
+
                             </h4>
                         </div>
                     </div>
-                    <MDBCardBody>
-                        <div className="progress">
-                            <div aria-valuemax="100" a
-                                 ria-valuemin="0" aria-valuenow="25"
-                                 className="progress-bar bg-primary" role="progressbar"
-                                 style={{width: '25%'}}></div>
-                        </div>
-                        <MDBCardText>Better than last week (25%)</MDBCardText>
-                    </MDBCardBody>
+
                 </MDBCard>
             </MDBContainer>
         );
