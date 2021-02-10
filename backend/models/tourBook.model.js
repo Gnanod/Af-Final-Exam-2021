@@ -12,6 +12,14 @@ let tourBook = new Schema({
         ref: "tour",
         required: true
     }],
+    personCount: {
+        type: String,
+        required: true
+    },
+    fullCost:{
+        type: String,
+        required: true
+    }
 
 });
 
